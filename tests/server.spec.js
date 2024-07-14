@@ -17,4 +17,12 @@ describe("Operaciones CRUD de cafes", () => {
     expect(response.status).toBe(404);
   });
 
+  // Prueba que la ruta POST /cafes agrega un nuevo café y devuelve un código 201.
+  it('POST /cafes - debería agregar un nuevo café y devolver un status 201', async () => {
+    const nuevoCafe = { id: 5, nombre: 'Latte' };
+    const response = await request(server).post('/cafes').send(nuevoCafe);
+    expect(response.status).toBe(201);
+    expect(response.body).toContainEqual(nuevoCafe);
+  });
+
 });
