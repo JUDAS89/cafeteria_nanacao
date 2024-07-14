@@ -11,4 +11,10 @@ describe("Operaciones CRUD de cafes", () => {
     expect(response.body.length).toBeGreaterThan(0);
   });
 
+  // Comprueba que se obtiene un código 404 al intentar eliminar un café con un id que no existe.
+  it('DELETE /cafes/:id - debería devolver un status 404 si el id no existe', async () => {
+    const response = await request(server).delete('/cafes/999').set('Authorization', 'Bearer token');
+    expect(response.status).toBe(404);
+  });
+
 });
